@@ -11,7 +11,7 @@ const (
 	DefaultTestScriptFilename = "test.sh"
 	DefaultTestDirname        = "tests"
 
-	DefaultRegistry = "ghcr.io/chainguard-images"
+	DefaultRegistry = "registry.enforce.dev/chainguard"
 
 	DefaultRegistryFrontend = "cgr.dev/chainguard"
 
