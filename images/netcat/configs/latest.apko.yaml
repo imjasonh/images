@@ -6,6 +6,7 @@ contents:
   packages:
     - wolfi-baselayout
     - netcat-openbsd
+
 accounts:
   groups:
     - groupname: nonroot
@@ -18,9 +19,11 @@ accounts:
 
 entrypoint:
   command: /usr/bin/nc
+
 cmd: -h
+
 work-dir: /home/nc
 
 archs:
-- x86_64
-- aarch64
+  - x86_64
+  - aarch64

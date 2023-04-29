@@ -7,6 +7,7 @@ contents:
     - ca-certificates-bundle
     - busybox
     - wolfi-baselayout
+
 accounts:
   groups:
     - groupname: nonroot
@@ -18,5 +19,5 @@ accounts:
   run-as: 65532
 
 archs:
-- x86_64
-- aarch64
+  - x86_64
+  - aarch64

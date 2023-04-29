@@ -21,6 +21,7 @@ work-dir: /work
 
 entrypoint:
   command: /usr/bin/melange
+
 cmd: --help
 
 archs:

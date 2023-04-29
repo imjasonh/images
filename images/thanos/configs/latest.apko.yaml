@@ -21,8 +21,8 @@ entrypoint:
   command: thanos
 
 archs:
-- x86_64
-- aarch64
+  - x86_64
+  - aarch64
 
 annotations:
   "org.opencontainers.image.authors": "Chainguard Team https://www.chainguard.dev/"

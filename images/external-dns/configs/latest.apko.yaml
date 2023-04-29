@@ -20,6 +20,7 @@ accounts:
 
 entrypoint:
   command: /usr/bin/external-dns
+
 cmd: --help
 
 archs:

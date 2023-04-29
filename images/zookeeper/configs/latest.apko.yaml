@@ -24,6 +24,7 @@ accounts:
 
 entrypoint:
   command: /usr/share/java/zookeeper/bin/zkServer.sh
+
 cmd: start-foreground
 
 paths:

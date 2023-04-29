@@ -24,4 +24,5 @@ archs:
 
 entrypoint:
   command: /usr/bin/dotnet
+
 cmd: --help

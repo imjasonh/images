@@ -11,7 +11,9 @@ contents:
     - consul-oci-entrypoint
     - busybox
 
-accounts:
+accounts
+# NOTE: we don't run as consul here. The consul entrypoint expects to run as root
+# and drops permissions to the consul user itself using su-exec:
   groups:
     - groupname: consul
       gid: 65532
@@ -19,11 +21,10 @@ accounts:
     - username: consul
       uid: 65532
   recursive: true
-# NOTE: we don't run as consul here. The consul entrypoint expects to run as root
-# and drops permissions to the consul user itself using su-exec
 
 entrypoint:
   command: /usr/bin/docker-entrypoint.sh
+
 cmd: agent -dev -client 0.0.0.0
 
 paths:

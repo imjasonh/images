@@ -14,5 +14,5 @@ entrypoint:
   command: /bin/bash -c
 
 archs:
-- x86_64
-- aarch64
+  - x86_64
+  - aarch64

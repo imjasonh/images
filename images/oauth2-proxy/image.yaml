@@ -1,4 +1,5 @@
 ref: cgr.dev/chainguard/oauth2-proxy
+
 versions:
   - apko:
       config: configs/latest.apko.yaml
