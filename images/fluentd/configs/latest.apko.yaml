@@ -27,6 +27,8 @@ accounts:
       gid: 65532
   run-as: fluent
 
+# Set the fluent.conf to an empty file so the image doesn't fail when
+# no options are supplied.
 paths:
   - path: /fluentd/log
     type: directory
@@ -42,9 +44,7 @@ paths:
     type: directory
     uid: 65532
     gid: 65532
-    permissions
-    # Set the fluent.conf to an empty file so the image doesn't fail when
-    # no options are supplied: 0o755
+    permissions: 0o755
   - path: /etc/fluent/fluent.conf
     type: empty-file
     uid: 65532

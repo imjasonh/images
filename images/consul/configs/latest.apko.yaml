@@ -11,9 +11,9 @@ contents:
     - consul-oci-entrypoint
     - busybox
 
-accounts
-# NOTE: we don't run as consul here. The consul entrypoint expects to run as root
-# and drops permissions to the consul user itself using su-exec:
+accounts:
+  # NOTE: we don't run as consul here. The consul entrypoint expects to run as root
+  # and drops permissions to the consul user itself using su-exec.
   groups:
     - groupname: consul
       gid: 65532

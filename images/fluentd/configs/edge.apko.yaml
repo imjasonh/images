@@ -43,9 +43,9 @@ paths:
     type: directory
     uid: 65532
     gid: 65532
-    permissions
-    # Set the fluent.conf to an empty file so the image doesn't fail when
-    # no options are supplied: 0o755
+    permissions: 0o755
+  # Set the fluent.conf to an empty file so the image doesn't fail when
+  # no options are supplied
   - path: /etc/fluent/fluent.conf
     type: empty-file
     uid: 65532
