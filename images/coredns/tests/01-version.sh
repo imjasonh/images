@@ -2,5 +2,4 @@
 
 set -o errexit -o nounset -o errtrace -o pipefail -x
 
-docker run --rm "${IMAGE_NAME}" -version |
-	grep -i '^CoreDNS'
+docker run --rm "${IMAGE_NAME}" -version | grep -i '^CoreDNS'
