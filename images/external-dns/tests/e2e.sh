@@ -5,27 +5,8 @@
 set -o errexit -o nounset -o errtrace -o pipefail -x
 set +t
 
-function preflight() {
-	if [[ "${IMAGE_REGISTRY}" == "" ]]; then
-		echo "Must set IMAGE_REGISTRY environment variable. Exiting."
-		exit 1
-	fi
-
-	if [[ "${IMAGE_REPOSITORY}" == "" ]]; then
-		echo "Must set IMAGE_REPOSITORY environment variable. Exiting."
-		exit 1
-	fi
-
-	if [[ "${IMAGE_TAG}" == "" ]]; then
-		echo "Must set IMAGE_TAG environment variable. Exiting."
-		exit 1
-	fi
-}
-
-preflight
-
 # Install a dev etcd
-set +u
+kubectl create ns ${NAMESPACE} || true
 cat >etcd.yaml <<EOF
 apiVersion: v1
 kind: Service
@@ -88,14 +69,13 @@ spec:
           - /bin/sh
           - -c
           - |
-            PEERS="etcd-0=http://etcd-0.etcd:2380"
             exec etcd --name \$$HOSTNAME \
               --listen-peer-urls http://0.0.0.0:2380 \
               --listen-client-urls http://0.0.0.0:2379 \
               --advertise-client-urls http://\$$HOSTNAME.etcd:2379 \
               --initial-advertise-peer-urls http://\$$HOSTNAME:2380 \
               --initial-cluster-token etcd-cluster-1 \
-              --initial-cluster \$$PEERS \
+              --initial-cluster "etcd-0=http://etcd-0.etcd:2380" \
               --initial-cluster-state new \
               --data-dir /var/run/etcd/default.etcd
   volumeClaimTemplates:
@@ -110,7 +90,7 @@ spec:
 EOF
 set -u
 
-kubectl apply -f etcd.yaml
+kubectl apply -f etcd.yaml -n ${NAMESPACE}
 
 etcd_ip=$(kubectl get svc etcd-client -ojsonpath='{.spec.clusterIP}')
 
@@ -145,7 +125,7 @@ servers:
   - name: loadbalance
 EOF
 helm repo add coredns https://coredns.github.io/helm
-helm install coredns coredns/coredns -f coredns-values.yaml
+helm install coredns-${NAMESPACE} coredns/coredns -f coredns-values.yaml -n ${NAMESPACE}
 
 # Install External DNS
 cat >external-dns-values.yaml <<EOF
@@ -156,7 +136,7 @@ env:
   value: http://${etcd_ip}:2379
 EOF
 helm repo add external-dns https://kubernetes-sigs.github.io/external-dns/
-helm install edns external-dns/external-dns -f external-dns-values.yaml
+helm install edns-${NAMESPACE} external-dns/external-dns -f external-dns-values.yaml -n ${NAMESPACE}
 
 sleep 10
 
@@ -184,13 +164,13 @@ spec:
             port:
               number: 80
 EOF
-kubectl apply -f ingress.yaml
+kubectl apply -f ingress.yaml -n ${NAMESPACE}
 
 # TODO: This sucks, but edns doesn't always forward the ingress request fast enough
 sleep 20
 
 ing_ip=$(kubectl get ingress dummy -ojsonpath='{.status.loadBalancer.ingress[0].ip}')
-kubectl port-forward svc/coredns-coredns 5353:53 &
+kubectl port-forward svc/coredns-coredns -n ${NAMESPACE} 5353:53 &
 
 max_attempts=10
 attempt=0

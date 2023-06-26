@@ -152,6 +152,11 @@ module "etcd" {
   target_repository = "${var.target_repository}/etcd"
 }
 
+module "external-dns" {
+  source            = "./images/external-dns"
+  target_repository = "${var.target_repository}/external-dns"
+}
+
 module "ffmpeg" {
   source            = "./images/ffmpeg"
   target_repository = "${var.target_repository}/ffmpeg"

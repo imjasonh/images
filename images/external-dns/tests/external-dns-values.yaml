@@ -1,0 +1,5 @@
+provider: coredns
+logLevel: debug
+env:
+- name: ETCD_URLS
+  value: http://10.96.131.231:2379
