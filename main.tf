@@ -292,6 +292,11 @@ module "ko" {
   target_repository = "${var.target_repository}/ko"
 }
 
+module "kube-state-metrics" {
+  source            = "./images/kube-state-metrics"
+  target_repository = "${var.target_repository}/kube-state-metrics"
+}
+
 module "kubectl" {
   source            = "./images/kubectl"
   target_repository = "${var.target_repository}/kubectl"
