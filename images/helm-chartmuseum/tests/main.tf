@@ -8,7 +8,8 @@ variable "digest" {
   description = "The image digest to run tests over."
 }
 
-data "oci_exec_test" "helm_repo_add" {
-  digest = var.digest
-  script = "${path.module}/01-helm-repo-add.sh"
+data "oci_exec_test" "run" {
+  digest      = var.digest
+  script      = "./helm-repo-add.sh"
+  working_dir = path.module
 }

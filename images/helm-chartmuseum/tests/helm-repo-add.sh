@@ -4,7 +4,7 @@
 
 set -o errexit -o nounset -o errtrace -o pipefail -x
 
-CONTAINER_NAME=${CONTAINER_NAME:-"chartmuseum-test-${FREE_PORT}"}
+CONTAINER_NAME=${CONTAINER_NAME:-"chartmuseum-test-${RANDOM}"}
 
 TMPDIR="$(mktemp -d)"
 trap "rm -rf ${TMPDIR} && \
