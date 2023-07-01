@@ -9,6 +9,7 @@ locals {
     "calicoctl",
     "node",
     "kube-controllers",
+    "cni",
   ])
 
   // Normally the package is named like "calico-{component}"

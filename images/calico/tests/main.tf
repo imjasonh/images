@@ -10,6 +10,7 @@ variable "digests" {
   type = object({
     node             = string
     calicoctl        = string
+    cni              = string
     kube-controllers = string
   })
 }
@@ -21,6 +22,10 @@ data "oci_exec_test" "install" {
   env {
     name  = "NODE_IMAGE"
     value = var.digests["node"]
+  }
+  env {
+    name  = "CNI_IMAGE"
+    value = var.digests["cni"]
   }
   env {
     name  = "KUBE_CONTROLLERS_IMAGE"

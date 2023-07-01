@@ -8,7 +8,7 @@ curl -o calico.yaml https://raw.githubusercontent.com/projectcalico/calico/v3.26
 
 sed -i.bak "s|docker.io/calico/node:.*|${NODE_IMAGE}|g" calico.yaml
 sed -i.bak "s|docker.io/calico/kube-controllers:.*|${KUBE_CONTROLLERS_IMAGE}|g" calico.yaml
-#sed -i.bak "s|docker.io/calico/cni:.*|${CNI_IMAGE}|g" calico.yaml
+sed -i.bak "s|docker.io/calico/cni:.*|${CNI_IMAGE}|g" calico.yaml
 
 kubectl apply -f calico.yaml
 
