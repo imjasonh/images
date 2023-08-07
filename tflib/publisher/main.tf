@@ -26,10 +26,6 @@ variable "extra_packages" {
 
 variable "name" { type = string }
 
-output "path" {
-  value = basename(path.cwd)
-}
-
 locals {
   updated_config = merge(yamldecode(var.config),
     { "annotations" = {
