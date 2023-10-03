@@ -53,3 +53,7 @@ resource "oci_tag" "latest" {
   digest_ref = module.latest[each.key].image_ref
   tag        = "latest"
 }
+
+output "config" {
+  value = module.config
+}
