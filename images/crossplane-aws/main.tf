@@ -55,5 +55,5 @@ resource "oci_tag" "latest" {
 }
 
 output "config" {
-  value = module.config
+  value = module.config.config
 }
