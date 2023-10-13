@@ -38,7 +38,7 @@ resource "google_artifact_registry_repository_iam_member" "sa-push" {
   project    = google_artifact_registry_repository.root.project
   location   = google_artifact_registry_repository.root.location
   repository = google_artifact_registry_repository.root.name
-  role       = "roles/artifactregistry.admin"
+  role       = "roles/artifactregistry.repoAdmin"
   member     = "serviceAccount:${google_service_account.sa.email}"
 }
 
