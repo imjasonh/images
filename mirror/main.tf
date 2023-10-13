@@ -25,20 +25,20 @@ resource "google_artifact_registry_repository" "root" {
 }
 
 // Allow anybody to pull images from the mirror.
-resource "google_artifact_registry_repository_iam_member" "public-pull" {
-  project    = google_artifact_registry_repository.root.project
-  location   = google_artifact_registry_repository.root.location
-  repository = google_artifact_registry_repository.root.name
-  role       = "roles/artifactregistry.reader"
-  member     = "allUsers"
-}
+//resource "google_artifact_registry_repository_iam_member" "public-pull" {
+//  project    = google_artifact_registry_repository.root.project
+// location   = google_artifact_registry_repository.root.location
+//  repository = google_artifact_registry_repository.root.name
+//  role       = "roles/artifactregistry.reader"
+//  member     = "allUsers"
+//}
 
 // Allow the SA to push to the repos.
 resource "google_artifact_registry_repository_iam_member" "sa-push" {
   project    = google_artifact_registry_repository.root.project
   location   = google_artifact_registry_repository.root.location
   repository = google_artifact_registry_repository.root.name
-  role       = "roles/artifactregistry.writer"
+  role       = "roles/artifactregistry.admin"
   member     = "serviceAccount:${google_service_account.sa.email}"
 }
 
