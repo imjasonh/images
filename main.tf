@@ -128,6 +128,11 @@ module "bazel" {
   target_repository = "${var.target_repository}/bazel"
 }
 
+module "blahh" {
+  source            = "./images/blahh"
+  target_repository = "${var.target_repository}/blahh"
+}
+
 module "boring-registry" {
   source            = "./images/boring-registry"
   target_repository = "${var.target_repository}/boring-registry"
