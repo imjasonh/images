@@ -3,11 +3,7 @@ contents:
     - https://packages.cgr.dev/extras
   keyring:
     - https://packages.cgr.dev/extras/chainguard-extras.rsa.pub
-  packages: [
-    # Package "nvidia-driver" comes in via var.extra_packages
-    # To add a version stream image, see the extra_packages variable in config/main.tf to add packages conditionally.
-    # Otherwise, just add packages here.
-  ]
+  packages: []
 
 accounts:
   groups:
