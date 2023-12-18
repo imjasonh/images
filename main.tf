@@ -870,6 +870,11 @@ module "nvidia-device-plugin" {
   target_repository = "${var.target_repository}/nvidia-device-plugin"
 }
 
+module "nvidia-driver" {
+  source            = "./images/nvidia-driver"
+  target_repository = "${var.target_repository}/nvidia-driver"
+}
+
 module "oauth2-proxy" {
   source            = "./images/oauth2-proxy"
   target_repository = "${var.target_repository}/oauth2-proxy"
