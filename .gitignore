@@ -16,3 +16,6 @@ sbom-*.cdx
 
 # macOS
 .DS_Store
+
+# Ignore generated configs from tflib/publisher
+*.apko.json
