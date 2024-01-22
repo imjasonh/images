@@ -8,6 +8,7 @@ locals {
 
   groups = {
     "chainguard" : "720909c9f5279097d847ad02a2f24ba8f59de36a",
+    "chainguard-private" : "ce2d1984a010471142503340d670612d63ffb9f6",
   }
 }
 
